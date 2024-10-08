@@ -1,0 +1,124 @@
+Program 1 
+import java.util.Scanner;
+import java.lang.Math;
+
+class Solu {
+
+    public static void main(String[] args) {
+        // Declare variables
+        double a, b, c, d, x1, x2;
+
+        // Create a Scanner object to read input
+        Scanner s = new Scanner(System.in);
+
+        // Get user input
+        System.out.println("Jayashree\n24BECS410\n3B batch 4\nEnter the values of a, b, and c:");
+
+        // Read the values of a, b, and c
+        System.out.println("enter a ");
+        a = s.nextDouble();
+        System.out.println("enter b ");
+        b = s.nextDouble();
+        System.out.println("enter c ");
+        c = s.nextDouble();
+
+        // Calculate the discriminant
+        d = b * b - 4 * a * c;
+
+        // Check if the discriminant is zero (for one real root)
+        if (d == 0) {
+            x1 = x2 = -b / (2 * a);
+            System.out.println("The roots are: " + x1 + " and " + x2);
+        }
+        // Check if the discriminant is positive (for two real roots)
+        else if (d > 0) {
+            x1 = (-b + Math.sqrt(d)) / (2 * a);
+            x2 = (-b - Math.sqrt(d)) / (2 * a);
+            System.out.println("The roots are: " + x1 + " and " + x2);
+        }
+        // If the discriminant is negative (no real roots)
+        else {
+            System.out.println("No real solutions. The discriminant is negative that is b2-4ac=less than 0.");
+        }
+
+        // Close the scanner
+        s.close();
+    }
+}
+Program 2
+import java.util.Scanner;
+
+class Student {
+    String usn;
+    String name;
+    int[] credits;
+    int[] marks;
+    int n; // Number of subjects
+    
+    // Method to accept student details
+    void acceptDetails() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter USN: ");
+        usn = sc.nextLine();
+        System.out.print("Enter Name: ");
+        name = sc.nextLine();
+        System.out.print("Enter number of subjects: ");
+        n = sc.nextInt();
+        
+        credits = new int[n];
+        marks = new int[n];
+        
+        // Input credits and marks for each subject
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter credits for subject " + (i+1) + ": ");
+            credits[i] = sc.nextInt();
+            System.out.print("Enter marks for subject " + (i+1) + ": ");
+            marks[i] = sc.nextInt();
+        }
+    }
+    
+    // Method to display student details
+    void displayDetails() {
+        System.out.println("\nStudent Details:");
+        System.out.println("USN: " + usn);
+        System.out.println("Name: " + name);
+        System.out.println("Subject-wise details:");
+        for (int i = 0; i < n; i++) {
+            System.out.println("Subject " + (i+1) + ": Credits = " + credits[i] + ", Marks = " + marks[i]);
+        }
+    }
+    
+    // Method to calculate SGPA
+    double calculateSGPA() {
+        int totalCredits = 0;
+        double totalPoints = 0.0;
+        
+        for (int i = 0; i < n; i++) {
+            int gradePoint = calculateGradePoint(marks[i]);
+            totalCredits += credits[i];
+            totalPoints += gradePoint * credits[i];
+        }
+        
+        return totalPoints / totalCredits;
+    }
+    
+    // Method to convert marks to grade point
+    int calculateGradePoint(int marks) {
+        if (marks >= 90) return 10;
+        else if (marks >= 80) return 9;
+        else if (marks >= 70) return 8;
+        else if (marks >= 60) return 7;
+        else if (marks >= 50) return 6;
+        else if (marks >= 40) return 5;
+        else return 0; // Fail
+    }
+
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.acceptDetails();
+        s.displayDetails();
+        double sgpa = s.calculateSGPA();
+        System.out.println("SGPA: " + sgpa);
+    }
+}
+output https://ibb.co/0Yx9msf
