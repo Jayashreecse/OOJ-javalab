@@ -1,0 +1,34 @@
+class Messagethread extends Thread {
+    private String message;
+    private int interval;
+
+    public Messagethread(String message, int interval) {
+        this.message = message;
+        this.interval = interval;
+    }
+
+    @Override
+    public void run() {
+        while (!Interrupted) {
+            try {
+                System.out.println(message);
+                Thread.sleep(interval);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+               Messagethread thread1 = new Messagethread("BMS College of Engineeringg", 10000); // 10000 milliseconds = 10 seconds
+        thread1.start();
+
+               Messagethread thread2 = new Messagethread("CSE", 2000); // 2000 milliseconds = 2 seconds
+        thread2.start();
+Thread.sleep(20000);
+thread1.interrupt();
+thread2.interrupt();
+System.out.println("stopped");
+        
+    }
+}
